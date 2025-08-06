@@ -1,0 +1,14 @@
+@media(max-width:320px){
+    .small-screen{
+        display: none !important;
+    }
+        .small-screen-text{
+            font-size:38px;
+        }
+    
+}
+@media(max-width:613px){
+    .small-screen{
+        display: none !important;
+    }
+}
