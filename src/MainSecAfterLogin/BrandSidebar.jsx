@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-import { BrandDashboardBarGraph } from "./BrandDashboardBarGraph";
-import { BrowserInfluencers } from "./BrowseInfluencers";
-import ManageCampaigns from "./ManageCampagins";
-import Messages from './BrandMessages'
-import { FiSettings,FiLogOut } from 'react-icons/fi';
 import {
   LayoutDashboard,
   Megaphone,
@@ -14,102 +9,77 @@ import {
   CreditCard,
   Menu,
   X,
-  
 } from "lucide-react";
-import MetricsView from "./Metrics";
-import BrandReports from "./BrandReports";
-import Billing from "./BrandBilling";
-import { PostCampaign } from "./BrandPostCampagins";
-import {useNavigate } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
+import { NavLink, Outlet, useNavigate } from "react-router-dom"; // <-- IMPORTANT!
 
 const menuItems = [
-  { name: "Dashboard", path:"/brand-dashboard", value: "dashboard", icon: <LayoutDashboard size={20} /> },
-  { name: "Post Campaign",path:"/postCampagins", value: "post", icon: <Megaphone size={20} /> },
-  { name: "Manage Campaigns", path:"/managePosts", value: "manage", icon: <ClipboardList size={20} /> },
-  { name: "Browse Influencers", path:"/BrowserInfluencers", value: "browse", icon: <Users size={20} /> },
-  { name: "Messages", path:"./messages", value: "messages", icon: <MessageSquare size={20} /> },
-  { name: "Reports", value: "reports", icon: <BarChart2 size={20} /> },
-  { name: "Billing", path:"/billing", value: "billing", icon: <CreditCard size={20} /> },
-  // { name: "Settings", value: "settings", icon: <FiSettings size={20} /> },
-  { name: "Logout", value: "logout", icon: <FiLogOut size={20} />},
+  { name: "Dashboard", path: "/brand-dashboard", icon: <LayoutDashboard size={20} /> },
+  { name: "Post Campaign", path: "/postCampagins", icon: <Megaphone size={20} /> },
+  { name: "Manage Campaigns", path: "/managePosts", icon: <ClipboardList size={20} /> },
+  { name: "Browse Influencers", path: "/BrowserInfluencers", icon: <Users size={20} /> },
+  { name: "Messages", path: "/messages", icon: <MessageSquare size={20} /> },
+  { name: "Reports", path: "/reports", icon: <BarChart2 size={20} /> },
+  { name: "Billing", path: "/billing", icon: <CreditCard size={20} /> },
+  { name: "Logout", path: "/login", icon: <FiLogOut size={20} /> },
 ];
-
 
 export const BrandSideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activePage, setActivePage] = useState("dashboard");
-   const nav=useNavigate()
- 
-  const renderContent = () => {
-    switch (activePage) {
-      case "dashboard":
-        return (
-          <div className="flex flex-col gap-6">
-            <div className="">
-            <BrandDashboardBarGraph />
-            </div>
-            <div>
-            <MetricsView />
-            </div>
-          </div>
-        );
-      case "post":
-        return (
-        <div>
-          <PostCampaign />
-          </div>
-        );
-      case "manage":
-        return <ManageCampaigns />;
-        case "browse":
-          return <BrowserInfluencers />
-      case "reports":
-        return <BrandReports/>
-        case "billing":
-          return <Billing/>
-          case "messages":
-            return <Messages />
-            case "logout":
-              return nav("/login",{replace:true})
-      default:
-        return <div className="p-4 text-gray-500">Page not implemented yet.</div>;
-    }
-  };
-
+  const navigate=useNavigate();
+ const handleNavigate=(item)=>{
+if(item.name==="Dashboard"){
+  navigate("/Homepage")
+  setTimeout(() => {
+    navigate("/brand-dashboard")
+  }, 0);
+ setIsOpen(false) 
+}
+else{
+  navigate(item.path);
+  setIsOpen(false)
+}
+ }
   return (
+    <>
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <div
-        className={`bg-white w-64 p-4 shadow-md border-r flex flex-col h-screen fixed top-0 left-0 z-40 transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:relative md:translate-x-0`}
+        className={`fixed md:relative top-0 left-0 h-full w-64 bg-white border-r shadow-md z-40 transition-transform duration-300
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
       >
-        <h1 className="text-2xl font-semibold text-purple-600 mb-6 mt-6 md:mt-0">
-          Vibilytic
-        </h1>
-        <ul className="space-y-3">
-          {menuItems.map((item) => (
-            <li
-              key={item.value}
-              onClick={() => {
-                setActivePage(item.value);
-                setIsOpen(false);
-                nav(item.path); // Close menu on mobile
-              }}
-              className={`flex items-center gap-3 text-gray-700 p-2 rounded-lg cursor-pointer transition-all ${
-                activePage === item.value
-                  ? "bg-purple-100 text-purple-700 font-semibold"
-                  : "hover:text-purple-600 hover:bg-purple-50"
-              }`}
-            >
-              {item.icon}
-              <span>{item.name}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="p-4">
+          <h1 className="text-2xl font-bold text-purple-600 mb-6">Vibilytic</h1>
+          <ul className="space-y-3">
+            {menuItems.map((item) => (
+              <li key={item.path}>
+                <button onClick={()=>handleNavigate(item)} className="w-full text-left">
+                  <div className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all ${window.location.pathname===item.path?'bg-purple-100 text-purple-700 font-semibold':'text-gray-700 hover:bg-purple-50 hover:text-purple-600'}`}>
+                    {item.icon}
+                    <span>{item.name}</span>
+                    </div>
+                </button>
+                {/* <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3 py-2 rounded-lg transition-all ${
+                      isActive
+                        ? "bg-purple-100 text-purple-700 font-semibold"
+                        : "text-gray-700 hover:bg-purple-50 hover:text-purple-600"
+                    }`
+                  }
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
+                </NavLink> */}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      {/* Mobile Hamburger */}
+      {/* Hamburger Menu for Mobile */}
       <div className="md:hidden fixed top-4 left-4 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -119,10 +89,12 @@ export const BrandSideBar = () => {
         </button>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-y-auto ml-0 md:ml-64 lg:ml-0 p-4">
-        {renderContent()}
+      {/* MAIN CONTENT AREA – PLACE OUTLET HERE */}
+        <div className="flex-1 overflow-y-auto ml-0 md:ml-64 lg:ml-0 p-4 bg-gray-50">
+        <Outlet />
       </div>
     </div>
+  
+     </>
   );
 };

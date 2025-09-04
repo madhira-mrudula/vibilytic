@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-
+import Aos from 'aos';
 // Toast component
 const Toast = ({ type, message, onClose }) => (
   <div
@@ -82,6 +82,14 @@ export const BrowserInfluencers = () => {
     }
   }, [toast]);
 
+  useEffect(()=>{
+    Aos.init({
+      duration:1000,
+      easing:"ease-in-out",
+      once:false
+    })
+
+  },[]);
   return (
     <div className="p-6 max-w-6xl mx-auto font-sans">
       <h1 className="text-3xl font-bold mb-6 text-center">Browse Influencers</h1>
@@ -120,9 +128,9 @@ export const BrowserInfluencers = () => {
       </div>
 
       {/* Influencer Cards */}
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3" data-aos="fade-up">
         {paginated.length ? paginated.map(inf => (
-          <div key={inf.id} className="border rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition duration-300">
+          <div key={inf.id} className="border rounded-2xl shadow-md p-6 text-center transform hover:scale-105 transition duration-300">
             <img src={inf.avatar} alt={inf.name} className="w-24 h-24 rounded-full mx-auto mb-4" />
             <h2 className="text-xl font-semibold">{inf.name}</h2>
             <p className="text-gray-500 text-sm mb-2">{inf.bio}</p>
@@ -136,7 +144,7 @@ export const BrowserInfluencers = () => {
             <>
               <button
                 onClick={() => setSelectedInfluencer(inf)}
-                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                className="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-700 transition"
               >
                 Invite
               </button>
@@ -168,7 +176,7 @@ export const BrowserInfluencers = () => {
                   </button>
                   <button
                     onClick={handleSendInvite}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-700"
                   >
                     Send Invite
                   </button>
@@ -189,7 +197,7 @@ export const BrowserInfluencers = () => {
             onClick={() => setCurrentPage(i + 1)}
             className={`px-4 py-2 rounded-lg border ${
               currentPage === i + 1
-                ? 'bg-blue-600 text-white'
+                ? 'bg-purple-600 text-white'
                 : 'bg-white hover:bg-gray-100'
             }`}
           >

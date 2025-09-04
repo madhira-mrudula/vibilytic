@@ -1,10 +1,12 @@
 import {FaCheckCircle,FaMapMarkerAlt,FaEnvelope,FaLocationArrow,FaStar} from 'react-icons/fa';
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import {Navbar} from './Navbar'
+import {Navbar} from './Navbar';
+import { influencers } from '../components/Data';
 import {Swiper,SwiperSlide} from "swiper/react";
 import {Autoplay,Pagination} from "swiper/modules";
 import 'swiper/css/pagination';
 import "swiper/css";
+import { useParams } from 'react-router-dom';
 export const InfluencerProfileView = () => {
   const testimonials = [
   {
@@ -30,6 +32,8 @@ export const InfluencerProfileView = () => {
 ];
 
 const socialIcons = [FaInstagram, FaTwitter, FaYoutube];
+const {id}=useParams();
+const pro=influencers[id];
     return ( 
         <>
         <Navbar />
@@ -37,20 +41,20 @@ const socialIcons = [FaInstagram, FaTwitter, FaYoutube];
         {/* <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-54'> */}
         <div className="relative">
     <img
-      src="https://randomuser.me/api/portraits/women/68.jpg"
+      src={pro.profileImage}
       className="w-[200px] h-[200px] rounded-full border-3 border-purple-500 object-cover"
     />
     {/* Elite Badge */}
     <span className="absolute -top-6 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-purple-500 px-3 py-1 text-[14px] rounded-2xl text-white shadow">
-      Elite <FaCheckCircle className="text-white text-xs" />
+      {pro.badge} <FaCheckCircle className="text-white text-xs" />
     </span>
     </div>
     <div className='lg:text-start' >
-     <p className="text-[24px] font-bold text-center">Thomas Evidan</p>
-      <p className="text-gray-600 max-w-[570px] mt-4 mx-2">Lifestyle content creator with a passion for wellness and fashion. Worked with top brands like Nike, Sephora, and Airbnb</p>
+     <p className="text-[24px] font-bold text-center">{pro.name}</p>
+      <p className="text-gray-600 max-w-[570px] mt-4 mx-2">{pro.bio}</p>
        {/* <p className="text-purple-500 w-full max-w-[570px] mt-2">120K Followers</p> */}
-      <p className=" text-black font-semibold mt-3 mx-2">Niche:<span className="text-gray-600">Fashion Designer</span></p>
-       <p className="text-gray-600  flex items-center mt-1 mx-2"><FaMapMarkerAlt className='text-red-500 h-5 w-5' />Chennai,India</p>
+      <p className=" text-black font-semibold mt-3 mx-2">Niche:<span className="text-gray-600">{pro.designation}</span></p>
+       <p className="text-gray-600  flex items-center mt-1 mx-2"><FaMapMarkerAlt className='text-red-500 h-5 w-5' />{pro.location}</p>
       <div className='flex flex-col md:flex-row items-center gap-9'>
       <button className='border border-gray-200 flex items-center rounded-md px-3 py-2 mt-3 bg-blue-500 text-white'><FaEnvelope className='mx-2 ' />Message</button>
        <button className='border border-gray-200 flex items-center rounded-md px-3 py-2 lg:mt-3 bg-green-500 text-white'><FaLocationArrow className='mx-2 ' />Request Collabrations</button>
@@ -61,19 +65,19 @@ const socialIcons = [FaInstagram, FaTwitter, FaYoutube];
      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center mt-6'>
       <div className='flex flex-col'>
       <p className='text-center text-purple-500'>Followers</p>
-      <p className='text-center font-semibold'>125k Followers</p>
+      <p className='text-center font-semibold'>${pro.followers} Followers</p>
       </div>
       <div className='flex flex-col'>
       <p className='text-center text-purple-500'>Average Engagement Rate</p>
-      <p className='text-center font-semibold'>7.5%</p>
+      <p className='text-center font-semibold'>{pro.Engagement}%</p>
       </div>
       <div className='flex flex-col'>
       <p className='text-center text-purple-500'>Total Collabrations</p>
-      <p className='text-center font-semibold'>4</p>
+      <p className='text-center font-semibold'>{pro.collabrations}</p>
       </div>
       <div className='flex flex-col'>
       <p className='text-center text-purple-500'>Experience</p>
-      <p className='text-center font-semibold'>1 Years</p>
+      <p className='text-center font-semibold'>{pro.Experience} Years</p>
       </div>
      </div>
    <h2 className='text-[23px] font-medium mt-15 text-center'>Past Collabrations</h2>

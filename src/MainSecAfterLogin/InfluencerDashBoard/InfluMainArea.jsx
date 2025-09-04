@@ -44,7 +44,7 @@ const sidebarItems = [
               <Camera className="text-white w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Brandsync</h1>
+              <h1 className="text-xl font-bold text-gray-900">Vibilytic</h1>
               <p className="text-sm text-gray-500">Influencer Dashboard</p>
             </div>
           </div>

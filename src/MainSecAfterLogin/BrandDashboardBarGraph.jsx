@@ -91,11 +91,11 @@ export const BrandDashboardBarGraph = () => {
       </div>
 
      <div>
-      <h2 className="font-medium text-2xl text-purple-400 text-center my-5">Campagin Summary</h2>
+      <h2 className=" text-2xl text-purple-500 font-semibold  text-center my-5">Campagin Summary</h2>
     </div>
     <div className="">
       <ResponsiveContainer width="100%" height={350}>
-     
+  
         <PieChart>
           <Pie className=""      
            tabIndex={-1}

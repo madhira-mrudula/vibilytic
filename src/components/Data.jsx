@@ -3,44 +3,58 @@ import {  MessageCircle,
   CheckCircle2,
   Video,
   MonitorUp,} from "lucide-react";
-import {
-  FaUserPlus,
-  FaEnvelopeOpenText,
-  FaUserEdit,
-  FaBriefcase,
-  FaSearch,
-} from 'react-icons/fa';
+
 export const influencers = [
   {
+    id:0,
     name: "Ava Thompson",
     profileImage: "https://randomuser.me/api/portraits/women/68.jpg",
     badge: "Pro",
     designation: "Fashion Influencer",
     followers: "120K",
+    location:"chennai,India",
+    Engagement:8.7,
+    collabrations:3,
+    Experience:4,
     bio: "Passionate about streetwear, trends, and empowering self-expression through fashion."
   },
   {
+    id:1,
     name: "Liam Patel",
     profileImage: "https://randomuser.me/api/portraits/men/52.jpg",
     badge: "Expert",
     designation: "Tech Reviewer",
     followers: "95K",
+    location:"Hyd,India",
+    Engagement:8.0,
+    Experience:2,
+    collabrations:2,
     bio: "Breaking down complex tech for everyday users. Reviews, tips & gadget insights."
   },
   {
+    id:2,
     name: "Sofia Ramirez",
     profileImage: "https://randomuser.me/api/portraits/women/21.jpg",
     badge: "Elite",
     designation: "Fitness Coach",
     followers: "78K",
+    location:"Guntur,India",
+    Engagement:6.7,
+    collabrations:4,
+    Experience:3,
     bio: "Helping people build healthy habits with strength training and wellness tips."
   },
   {
+    id:3,
     name: "Ethan Zhao",
     profileImage: "https://randomuser.me/api/portraits/men/44.jpg",
     badge: "Master",
     designation: "Travel Blogger",
     followers: "140K",
+    Engagement:7.5,
+    location:"Banglore,India",
+    collabrations:5,
+    Experience:4,
     bio: "Exploring cultures, landscapes, and street food from around the world."
   }
 ];

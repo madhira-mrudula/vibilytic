@@ -25,13 +25,13 @@ export const InfluencerProfile = () => {
       {/* Cards Grid */}
       <div className="pt-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {influencers.map((profile, idx) => (
+          {influencers.map((profile) => (
             <div
-              key={idx}
+              key={profile.id}
               data-aos="zoom-in"
               data-aos-easing="ease-in-out"
               className="bg-white rounded-xl shadow-lg p-6 flex items-start gap-5"
-              onClick={()=>{navigate("/InfluencerProfileView")}}
+              onClick={()=>{navigate(`/InfluencerProfileView/${profile.id}`)}}
             >
               {/* Profile Image + Badge */}
               <div className="relative w-20 h-20">

@@ -24,7 +24,7 @@ const HeroSec = () => {
           <div className='flex flex-col md:flex-row lg:flex-row justify-around'>
             {/* leftSec */}
             <div className='flex flex-col justify-center mt-4 lg:mt-10 text-center lg:text-left'>
-              <h2 className="text-5xl sm:text-4xl md:text-5xl pb-6 small-screen-text"> Drive Powerful<br /> <span className="block mt-3">Creator Marketing</span></h2>
+              <h2 className="text-5xl sm:text-4xl md:text-5xl pt-6 small-screen-text"> Drive Powerful<br /> <span className="block mt-3">Creator Marketing</span></h2>
               <p className='text-gray-500 sm:text-lg'>Build, manage and measure your creator community with TRIBE’s <br /> platform and expert support team</p>
               <div className='flex flex-col sm:flex-row sm:justify-center gap-4 pt-10 ps-6'>
                 <Link to="/login/influencer">

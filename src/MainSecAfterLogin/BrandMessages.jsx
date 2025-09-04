@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import Aos from 'aos';
 const mockMessages = [
   {
     id: 1,
@@ -24,10 +24,19 @@ const mockMessages = [
   },
 ];
 
+
 const Messages = () => {
   const [selectedChat, setSelectedChat] = useState(null);
   const [newMessage, setNewMessage] = useState('');
-
+useEffect(()=>{
+Aos.init(
+  {
+        Duration:800,
+        easing:"ease-in-out",
+        once:false
+   }
+)
+},[])
   const handleSend = () => {
     if (newMessage.trim() && selectedChat) {
       const updated = mockMessages.map((msg) => {
@@ -48,7 +57,7 @@ const Messages = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
       {/* Inbox Panel */}
-      <div className="bg-white p-4 rounded-xl shadow-md md:col-span-1 h-[500px] overflow-y-auto">
+      <div className="bg-white p-4 rounded-xl shadow-md md:col-span-1 h-[500px] overflow-y-auto" data-aos="fade-right">
         <h2 className="text-xl font-bold mb-4">💬 Messages</h2>
         <p className="text-gray-600 mb-4 text-sm">All influencer conversations in one place.</p>
         {mockMessages.map((msg) => (
@@ -75,7 +84,7 @@ const Messages = () => {
       </div>
 
       {/* Chat Area */}
-      <div className="bg-white p-4 rounded-xl shadow-md md:col-span-2 h-[500px] flex flex-col">
+      <div className="bg-white p-4 rounded-xl shadow-md md:col-span-2 h-[500px] flex flex-col"data-aos="fade-left">
         {selectedChat ? (
           <>
             {/* Chat Header */}

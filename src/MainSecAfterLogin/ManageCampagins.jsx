@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Pencil,
   Trash2,
@@ -6,7 +6,7 @@ import {
   PlayCircle,
   ClipboardList,
 } from "lucide-react";
-
+import Aos from 'aos';
 const sampleCampaigns = [
   {
     id: 1,
@@ -98,6 +98,12 @@ const ManageCampaigns = () => {
     message: "",
   });
 
+   useEffect(()=>{
+    Aos.init({duration:1000,
+     easing:"ease-in-out" 
+    })
+   },[])
+
   const toggleStatus = (id) => {
     setCampaigns((prev) =>
       prev.map((camp) =>
@@ -171,7 +177,7 @@ const ManageCampaigns = () => {
             onClick={() => setFilter(status)}
             className={`px-4 py-2 rounded-full text-sm font-medium capitalize border ${
               filter === status
-                ? "bg-blue-600 text-white cursor-pointer border-blue-600 "
+                ? "bg-purple-600 text-white cursor-pointer border-purple-600 "
                 : "bg-white text-gray-700 cursor-pointer border-gray-300"
             }`}
           >
@@ -182,14 +188,14 @@ const ManageCampaigns = () => {
       </div>
 
       {/* Campaign Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" data-aos="fade-right">
         {filteredCampaigns.map((camp) => (
           <div
             key={camp.id}
-            className="rounded-lg p-4 shadow border-3 hover:shadow-lg border-blue-500 bg-white transition duration ease-in-out"
+            className="rounded-lg py-7 px-8 shadow border-1 hover:shadow-lg border-purple-500 bg-white transition duration ease-in-out"
           >
             <div className="flex justify-between items-start">
-              <h3 className="text-lg font-semibold">{camp.name}</h3>
+              <h3 className="text-xl text-purple-500  font-medium">{camp.name}</h3>
               <span
                 className={`text-xs px-2 py-1 rounded-full ${statusColor[camp.status]}`}
               >
